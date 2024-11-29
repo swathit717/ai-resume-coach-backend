@@ -1,6 +1,11 @@
 from flask import Flask, request, jsonify
 import openai
 from PyPDF2 import PdfReader
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -8,8 +13,8 @@ app = Flask(__name__)
 from flask_cors import CORS
 CORS(app)
 
-# OpenAI API Key
-openai.api_key = "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"
+# OpenAI API Key from environment variable
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route('/')
 def home():
